@@ -31,7 +31,7 @@
 		<input type="number" placeholder="1.00" bind:value={balance} />
 	</div>
 	<div>
-		Percentage to Risk
+		Okay with losing (%)
 		<input type="number" placeholder="5" bind:value={risk} />
 	</div>
 	<div>
