@@ -1,10 +1,15 @@
 <script>
 	let balance = 1;
 	let risk = 5;
-	let sl = 15;
+	let entry = 12945;
+	let sl = 12670;
+	let leverage = 10;
 
 	let tradeBal;
-	$: tradeBal = balance * (risk / sl);
+	$: {
+		const slPercent = ((entry - sl) / entry) * leverage * 100;
+		tradeBal = balance * (risk / Math.abs(slPercent));
+	}
 </script>
 
 <style>
@@ -27,11 +32,19 @@
 	</div>
 	<div>
 		Percentage to Risk
-		<input type="number" placeholder="5" value="5" bind:value={risk} />
+		<input type="number" placeholder="5" bind:value={risk} />
 	</div>
 	<div>
-		SL percentage
-		<input type="number" placeholder="15" value="15" bind:value={sl} />
+		Entry
+		<input type="number" placeholder="12945" bind:value={entry} />
+	</div>
+	<div>
+		SL
+		<input type="number" placeholder="12670" bind:value={sl} />
+	</div>
+	<div>
+		Leverage (x)
+		<input type="number" placeholder="10" bind:value={leverage} />
 	</div>
 	<div>You should trade with {tradeBal.toFixed(4)} btc.</div>
 </div>
